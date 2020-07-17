@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Custom Theming</title>
+    <meta charset='utf-8' />
+    <link href='../lib/main.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
+    <script src='../lib/main.js'></script>
+    <style>
+      body{
+        font-family:Arial, Helvetica, sans-serif ;
+      }
+      #top-header{
+        height: 75px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #444;
+        color: white;
+        padding: 0px 10px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+      }
+      #top-header p{
+        font-size: 18px;
+      }
+      #calendar{
+        max-width: 1100px;
+        margin: 0 auto;
+        padding-bottom: 50px;
+      }
+    </style>
+    <script>
+      //A function has been added allowing us to theme the calender to our liking.
+      document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, { //initialzing globals
+      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+      themeSystem: 'bootstrap',
+      headerToolbar: {
+          start: 'today,prev,next',
+          center: 'title',
+          end: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+        },
+        footerToolbar: {
+          start: 'prevYear',
+          center: '',
+          end: 'nextYear'
+        },
+        titleFormat: {
+          year: 'numeric', month: 'long', day: 'numeric'
+        },
+        weekNumbers: true,
+        events: [
+          {
+            title: 'Taxes',
+            start: '2020-07-09',
+            end: '2020-07-09'
+          },
+          {
+            title: 'Vacation',
+            start: '2020-07-17',
+            end: '2020-07-20'
+          },
+          {
+            title: 'Bootcamp',
+            start: '2020-07-21',
+            end: '2020-07-25'
+          }
+        ]
+        
+      });
+      calendar.render();
+    });
+        
+
+    </script>
+  </head>
+  <body>
+    <div id="top-header"><p>Custom Theming(Primary color Changed from gray to blue)</p></div>
+    <div id='calendar'></div>
+  </body>
+</html>

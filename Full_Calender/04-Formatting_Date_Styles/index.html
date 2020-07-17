@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Formattable Date Styling</title>
+    <meta charset='utf-8' />
+    <link href='../lib/main.css' rel='stylesheet' />
+    <script src='../lib/main.js'></script>
+    <style>
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      body{
+        font-family:Arial, Helvetica, sans-serif ;
+      }
+      #top-header{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #444;
+        color: white;
+        padding: 0px 10px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+      }
+      #top-header p{
+        font-size: 18px;
+      }
+      #calendar{
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+    </style>
+    <script>
+      //A function has been added control the format of dates.
+      document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, { //initialzing globals
+        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+        titleFormat: { 
+        month: 'short',//options:long,short,narrow
+        year: '2-digit',//options:numeric,2-digit
+        day: 'numeric',//options:numeric,2-digit
+        weekday: 'long'//options:long,short,narrow
+      }
+      });
+      
+      calendar.render();
+    });
+        
+
+    </script>
+  </head>
+  <body>
+    <div id="top-header"><p>Various formats can be used for dates.</p></div>
+    <div id='calendar'></div>
+  </body>
+</html>

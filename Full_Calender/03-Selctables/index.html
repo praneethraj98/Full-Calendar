@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Selectables</title>
+    <meta charset='utf-8' />
+    <link href='../lib/main.css' rel='stylesheet' />
+    <script src='../lib/main.js'></script>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      body{
+        font-family:Arial, Helvetica, sans-serif ;
+      }
+      #top-header{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #444;
+        color: white;
+        padding: 0px 10px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+      }
+      #top-header p{
+        font-size: 18px;
+      }
+      #calendar{
+        max-width: 1100px;
+        margin:0 auto;
+      }
+    </style>
+    <script>
+      //A function has been added allowing us to select multiple dates.
+      document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, { //initialzing globals
+        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+        initialView: 'dayGridMonth',
+        initialView: 'dayGridMonth',
+        selectable: true,
+        dateClick: function(){
+          alert('A day has been clicked!')
+        }
+      });
+      calendar.render();
+    });
+        
+
+    </script>
+  </head>
+  <body>
+    <div id="top-header"><p>Dragging and holding dates will select them.</p></div>
+    <div id='calendar'></div>
+  </body>
+</html>

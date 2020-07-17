@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Month View</title>
+    <meta charset='utf-8' />
+    <link href='../lib/main.css' rel='stylesheet' />
+    <script src='../lib/main.js'></script>
+    <style>
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      body{
+        font-family:Arial, Helvetica, sans-serif ;
+      }
+      #top-header{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #444;
+        color: white;
+        padding: 0px 10px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+      }
+      #top-header p{
+        font-size: 18px;
+      }
+      #calendar{
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+      timeZone: 'UTC',
+      initialView: 'dayGridMonth',
+      events: [
+          {
+            title: 'Weekend Event',
+            start: '2020-07-11T18:00:00',
+            daysOfWeek: [ 6 ],
+            end: '2020-07009T19:30:00'
+          },
+          {
+            title: '3 day Event',
+            start: '2020-07-13',
+            end: '2020-07-16'
+          },
+          {
+            title: 'Lunch',
+            start: '2020-07-03T14:00:00',
+            end: '2020-07-03T15:00:00'
+          },
+          {
+            title: 'Github',
+            start: '2020-07-23',
+            url: 'https://github.com/'
+          }
+        ],
+      editable: true,
+      selectable: true
+      });
+      calendar.render();
+      });
+    </script>
+  </head>
+  <body>
+    <div id="top-header"><p>Month View with added events</p></div>
+    <div id='calendar'></div>
+  </body>
+</html>

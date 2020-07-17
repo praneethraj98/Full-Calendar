@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Date Click</title>
+
+    <meta charset='utf-8' />
+    <link href='../lib/main.css' rel='stylesheet' />
+    <script src='../lib/main.js'></script>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      body{
+        font-family:Arial, Helvetica, sans-serif ;
+      }
+      #top-header{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #444;
+        color: white;
+        padding: 0px 10px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+      }
+      #calendar{
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      #top-header p{
+        font-size: 18px;
+    </style>
+    <script>
+      //A function has been added to alert user when a day has been clicked.
+      document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, { //initialzing globals
+        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+        initialView: 'dayGridMonth',
+        dateClick: function(){
+          alert('A day has been clicked!')
+        }
+      });
+      calendar.render();
+    });
+        
+
+    </script>
+  </head>
+  <body>
+    <div id="top-header"><p>Clicking any date will pop an alert, Alerting the user</p></div>
+    <div id='calendar'></div>
+  </body>
+</html>

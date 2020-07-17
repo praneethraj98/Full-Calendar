@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Timeline View</title>
+    <meta charset='utf-8' />
+    <link href='../lib/main.css' rel='stylesheet' />
+    <script src='../lib/main.js'></script>
+    <style>
+      *{
+        padding: 0px;
+        margin: 0px;
+      }
+      body{
+        font-family:Arial, Helvetica, sans-serif ;
+      }
+      #top-header{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #444;
+        color: white;
+        padding: 0px 10px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+      }
+      #top-header p{
+        font-size: 18px;
+      }
+      #calendar{
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+    </style>
+    <script>
+      //A function has been added allowing us to add a header and a footer toolbar.
+      document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, { //initialzing globals
+      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+      initialView: 'resourceTimelineDay', //when loaded, by default day view of the scheduler
+      headerToolbar: {
+          start: 'today,prev,next',
+          center: 'title',
+          end: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+        },
+        resourceGroupField: 'building',  //Groups resources based on the building
+        // resourceAreaColumns: [   //can add custom columns
+        //   {
+        //     field: 'title',
+        //     headerContent: 'Room'
+        //   },
+        //   {
+        //     field: 'occupancy',
+        //     headerContent: 'Occupancy'
+        //   }
+        // ],
+        resources: [
+          { id: 'a', building: 'Street 1', title: 'House A' },
+          { id: 'b', building: 'Street 1', title: 'House B' },
+          { id: 'c', building: 'Street 1', title: 'House C' },
+          { id: 'd', building: 'Street 1', title: 'House D' },
+          { id: 'e', building: 'Street 1', title: 'House E' },
+          { id: 'f', building: 'Street 1', title: 'House F' },
+          { id: 'g', building: 'Street 2', title: 'House G' },
+          { id: 'h', building: 'Street 2', title: 'House H' },
+          { id: 'i', building: 'Street 2', title: 'House I' },
+          { id: 'j', building: 'Street 2', title: 'House J' },
+          { id: 'k', building: 'Street 2', title: 'House K' },
+          { id: 'l', building: 'Street 2', title: 'House L' },
+          { id: 'm', building: 'Street 2', title: 'House M' },
+          { id: 'n', building: 'Street 2', title: 'House N' },
+          { id: 'o', building: 'Street 3', title: 'House O' },
+          { id: 'p', building: 'Street 3', title: 'House P' },
+          { id: 'q', building: 'Street 3', title: 'House Q' },
+          { id: 'r', building: 'Street 3', title: 'House R' },
+          { id: 's', building: 'Street 3', title: 'House S' },
+          { id: 't', building: 'Street 3', title: 'House T' },
+          { id: 'u', building: 'Street 3', title: 'House U' },
+          { id: 'v', building: 'Street 3', title: 'House V' },
+          { id: 'w', building: 'Street 3', title: 'House W' },
+          { id: 'x', building: 'Street 3', title: 'House X' },
+          { id: 'y', building: 'Street 3', title: 'House Y' },
+          { id: 'z', building: 'Street 3', title: 'House Z' }
+          ]
+      });
+      calendar.render();
+    });
+        
+
+    </script>
+  </head>
+  <body>
+    <div id="top-header"><p>Timeline View with groups.</p></div>
+    <div id='calendar'></div>
+  </body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Full Calendar</title>
+    <meta charset='utf-8' />
+    <link href='../lib/main.css' rel='stylesheet' />
+    <script src='../lib/main.js'></script>
+    <style>
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      body{
+        font-family:Arial, Helvetica, sans-serif ;
+      }
+      #top-header{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #444;
+        color: white;
+        padding: 0px 10px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+      }
+      #top-header p{
+        font-size: 18px;
+      }
+      #calendar{
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+    </style>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+
+      //Toolbar and Views
+      headerToolbar: { //buttons at the top of the calendar
+        left: 'prev,next today',  //display prev, next and today buttons on the left
+        center: 'title',  //displays current month/week/day
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'  //displays month, week, day and list
+      },
+      views: { //can be used to change the format of the title
+        dayGridMonth: {
+          fixedWeekCount: false,  //If true, all months show 6 weeks
+          // titleFormat: { year: 'numeric', month: 'short', day: 'numeric'}
+        },
+        timeGridWeek: {
+          slotEventOverlap: true,  //Allows events to overlap in time
+        },
+        listWeek: {
+          
+        }
+      },
+      
+      //Sizing
+      stickyHeaderDates: true,  //makes sure that the dateheaders stick to the top while scrolling
+      // height: 650,   //can be used to set the height
+      // contentHeight: 600,  //can be used to set the height of the view area
+      // aspectRatio: 2,  //set width to height aspect ratio
+      
+
+      
+      //Date and Time
+      navLinks:true, //when clicked on the date, it take you to the list of items on that date
+      weekNumbers:true,  //displays the week number 
+      selectable:true,  //Allows us to highlight multiple days/timeslots
+      selectMirror:true,  //Allows us to create an event when we drag in the week and day displays
+      unselectAuto:false, //Selection remains when we click elsewhere on the page
+      nowIndicator:true, //displays red line to represent current time in the week and day grids
+      businessHours: [ //Time Slot for business
+        {
+          daysofWeek: [ 1, 2, 3, 4, 5],  //Mon, Tue, Wed, Thurs, Fri
+          startTime: '09:00',
+          endTime: '18:30'
+        },
+        {
+          daysofWeek: [6],   //Sat
+          startTime: '09:00',
+          endTime: '12:00'
+        }
+      ],
+      
+      //Events
+      editable:true,
+      events: [
+        {
+          title: 'Event1',
+          start: '2020-07-13',
+          end: '2020-07-15'
+        },
+        {
+            title: 'Review Session',
+            daysOfWeek: [6]
+          },
+          {
+            title: 'Movie Night',
+            daysOfWeek: [5]
+          },
+          {
+            title: 'Code Review',
+            start: '2020-07-07',
+            allDay: true,
+            backgroundColor: '#ff0000',
+            borderColor: '#850ffa',
+            textColor:'black'
+          },
+          {
+            title: 'BOOTCAMP',
+            start: '2020-07-05',
+            end: '2020-07-12'
+          },
+        {
+          title: 'Event 1',
+          start: '2020-07-17T09:30:00',
+          end: '2020-07-17T16:00:00'
+        },
+        {
+          title: 'Event 2',
+          start: '2020-07-21',
+          allDay:true
+        },
+        {
+          url: 'https://github.com/',
+          title: 'dayTask2(Clickable URL)',
+          start: '2020-07-02T09:30:00',
+          end: '2020-07-02T10:00:00'
+        },
+        {
+          title: 'dayTask4',
+          start: '2020-07-02T14:30:00',
+          end: '2020-07-02T16:30:00',
+          extendedProps: {
+            status: 'done'
+          }
+        },
+        {
+          title: 'Task 1',
+          start: '2020-07-05T19:00:00',
+          backgroundColor: 'green',
+          borderColor: 'green'
+        },
+        {
+          title: 'Task 2',
+          start: '2020-07-06T17:00:00',
+          textColor: 'red',
+          backgroundColor: 'yellow',
+          borderColor: 'red'
+        },
+        {
+          title: 'dayTask1',
+          start: '2020-07-02T05:00:00',
+          end: '2020-07-02T06:00:00',
+        },
+        {
+          title: 'dayTask5',
+          start: '2020-07-02T20:00:00',
+          end: '2020-07-02T22:00:00',
+        },
+        {
+          title: 'dayTask6',
+          start: '2020-07-02T21:00:00',
+          end: '2020-07-02T22:00:00',
+        },
+        {
+          title: 'dayTask7',
+          start: '2020-07-02T23:00:00',
+          end: '2020-07-02T23:30:00',
+        },
+        {
+          title: 'dayTask3',
+          start: '2020-07-02T13:00:00',
+          end: '2020-07-02T17:00:00',
+        },
+        {
+          title: 'Background Event',
+          start: '2020-07-29T13:00:00',
+          end: '2020-07-29T17:00:00',
+          display: 'background'  //Background Event
+        },
+      ],
+      eventDidMount: function(info) {
+        if(info.event.extendedProps.status == 'done') {
+          info.el.style.backgroundColor == 'red';
+          var dotEl = info.el.getElementsByClassName('fc-event-dot')[0];
+          if(dotEl) {
+            dotEl.style.backgroundColor = 'white';
+          }
+        }
+      },
+      eventClick: function(info) {
+        alert('Event: ' + info.event.title + ' Start: ' + info.event.start); //displays event name and start time when clicked on the event
+        info.jsEvent.preventDefault();  
+
+        if(info.event.url) {
+          window.open(info.event.url);   //Opens URLs in a newwindow
+        }
+      },
+      dayMaxEventRows:4,  //Link pops up if there are more than 4 events on a day
+      // moreLinkClick: "day",   //Goes to the day
+    });
+
+    calendar.render();
+  });
+</script>
+  </head>
+  <body>
+    <div id="top-header"><p>A calender with events(spanning a day) and events (spanning several days)</p></div>
+    <div id='calendar'></div>
+  </body>
+</html>

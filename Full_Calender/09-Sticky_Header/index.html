@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Sticky Header</title>
+    <meta charset='utf-8' />
+    <link href='../lib/main.css' rel='stylesheet' />
+    <script src='../lib/main.js'></script>
+    <style>
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      body{
+        font-family:Arial, Helvetica, sans-serif ;
+      }
+      #top-header{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #444;
+        color: white;
+        padding: 0px 10px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+      }
+      #top-header p{
+        font-size: 18px;
+      }
+      #calendar{
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+    </style>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, { //initialzing globals
+          schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+          initialView: 'listMonth',
+          navLinks: true,
+          editable: true,
+          headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'listMonth,listYear'
+          },
+          views: {
+            listMonth: { buttonText: 'list month' },
+            listYear: { buttonText: 'list year' }
+          },
+          events: [
+            {
+              title: 'Weekday Task',
+              daysOfWeek: [ 1, 2, 3, 4, 5,  ],
+              duration: '00:30'
+            },
+            {
+              title: 'Weekend Task',
+              daysOfWeek: [ 6, 7 ],
+              duration: '00:30'
+            },
+            {
+              title: 'Even Day Task',
+              daysOfWeek: [2, 4, 6 ],
+              duration: '00:30'
+            }
+          ],
+          stickyHeaderDates: true   //fix the date-headers at the top of the calendar to the viewport while scrolling
+        });
+        calendar.render();
+      });
+    </script>
+  </head>
+  <body>
+    <div id="top-header"><p>A sticky header has been implemented.</p></div>
+    <div id='calendar'></div>
+  </body>
+</html>

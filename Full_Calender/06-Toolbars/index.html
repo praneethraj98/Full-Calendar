@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Toolbars</title>
+    <meta charset='utf-8' />
+    <link href='../lib/main.css' rel='stylesheet' />
+    <script src='../lib/main.js'></script>
+    <style>
+      *{
+        padding: 0px;
+        margin: 0px;
+      }
+      body{
+        font-family:Arial, Helvetica, sans-serif ;
+        padding-bottom: 50px;
+      }
+      #top-header{
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #444;
+        color: white;
+        padding: 0px 10px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        margin-bottom: 10px;
+      }
+      #top-header p{
+        font-size: 18px;
+      }
+      #calendar{
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+    </style>
+    <script>
+      //A function has been added allowing us to add a header and a footer toolbar.
+      document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, { //initialzing globals
+      schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+      headerToolbar: {
+          start: 'today,prev,next',
+          center: 'title',
+          end: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+        },
+        footerToolbar: {
+          start: 'prevYear',
+          center: '',
+          end: 'nextYear'
+        },
+        titleFormat: {
+          year: 'numeric', month: 'long', day: 'numeric'
+        }
+      });
+      calendar.render();
+    });
+        
+
+    </script>
+  </head>
+  <body>
+    <div id="top-header"><p>A header and footer toolbar has been added.Can also toggle month,week,day,list views.</p></div>
+    <div id='calendar'></div>
+  </body>
+</html>
