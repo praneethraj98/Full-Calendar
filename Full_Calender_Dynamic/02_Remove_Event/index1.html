@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Full Calendar</title>
+  <link href='https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.css' rel='stylesheet' />
+  <link href='https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.1/css/all.css' rel='stylesheet'>
+  <link href='../lib/main.css' rel='stylesheet' />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src='../lib/main.js'></script>
+  <script src='../lib/moment.min.js'></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, { 
+        //Initialization
+        schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
+        initialView: 'dayGridMonth',
+
+        //Bootstrap Theming
+        themeSystem: 'bootstrap',
+
+        //Toolbar
+        headerToolbar: {
+          left: 'prev,next today',  
+          center: 'title',  
+          right: 'dayGridMonth,timeGridWeek,timeGridDay'  
+        },
+
+        //Date Formatting
+        titleFormat: {
+          month: 'short',
+          year: 'numeric',
+          day: 'numeric',
+        },
+
+        //Views
+        views: { 
+          //month view
+          dayGridMonth: {
+            fixedWeekCount: false,  //If true, all months show 6 weeks
+          },
+          //timegrid view
+          timeGridWeek: {
+            slotEventOverlap: true,  //Allows events to overlap in time
+          }
+        },
+
+        //Sticky Headers
+        stickyHeaderDates: true,
+
+        //Date Navigation
+        navLinks:true, 
+        weekNumbers:true,
+
+        //Date Selection
+        selectable:true,
+        selectMirror:true, 
+        unselectAuto:false, 
+        
+        //Date and Time Display
+        nowIndicator:true,
+
+        //Events
+        editable: true,
+        events: [
+        {
+            title: 'Event1',
+            start: '2020-07-09',
+            end: '2020-07-12',
+            id: '100'
+          },
+          {
+            title: 'Event2',
+            start: '2020-07-17T09:30:00',
+            end: '2020-07-17T16:00:00',
+            id: '101'
+          }
+
+        ],
+        dayMaxEventRows:4,
+
+
+      });
+
+      //Removing Events through buttons
+      $("#btn-remove").click(function(){
+        var id = prompt("Enter Event ID:");
+        var event = calendar.getEventById(id);
+        event.remove();
+      })
+
+     
+    calendar.render();
+    });
+  </script>
+  <style>
+    body {
+
+      padding: 0;
+      font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+      font-size: 14px;
+      padding-bottom: 70px;
+      padding-top: 20px;
+    }
+
+    .demo {
+      height: 40px;
+      line-height: 40px;
+      padding-left: 1em;
+      background: #eee;
+      border-bottom: 1px solid #ddd;
+      font-family: Lucida Grande,Helvetica,Arial,Verdana,sans-serif!important;
+      font-size: 14px!important;
+      color: #000!important;
+      margin-bottom: 1rem;
+    }
+  
+    #calendar {
+      height: 1000px;
+      width: 1000px;
+    }
+
+    .demo-topbar {
+      height: 50px;
+      padding: 1em;
+      padding-left: 465px;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .demo-topbar #btn {
+      padding: 10px;
+      margin-top: 15px;
+      border-radius: 8px;
+    }
+    .container{
+      display: flex;
+      flex-direction: row;
+    }
+
+   #form1{
+     margin-left: 30px;
+     padding:0px 50px;
+     padding-top: 20px;
+     border: 1px solid #555;
+     border-radius: 10px;
+   }
+
+   #submit, #btn-remove{
+     padding: 10px 20px;
+     font-size: 1.2rem;
+     display: inline-block;
+     border: none;
+     border-radius: 10px;
+     color: white;
+     background-color: #000;
+     transition: all 0.25s ease-in-out;
+   }
+
+   #submit:hover,
+   #btn-remove:hover {
+     background-color: #222;
+   }
+
+   #form1 label{
+     color:black;
+    font-size: 20px;
+   }
+
+   #form1 input{
+     width: 200px;
+   }
+
+  </style>
+</head>
+<body>
+  <div class="demo">Fill the form or Click on Events/Dates to see the Dynamic Calendar in Action</div>
+  <div class="container">
+    <div id="calendar"></div>
+
+
+   
+  </div>
+  <div class="demo-topbar"><button id="btn-remove">Remove Event</button></div>
+</body>
+</html>
